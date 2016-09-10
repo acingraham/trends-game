@@ -7,11 +7,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'node_modules'))); // TODO: load in node modules via build process
 
 app.get('/search', function(req, res) {
-    console.log(req.params.terms);
-    trends.search(req.params.terms)
-        .then(function(results) {
-            res.send(results);
-        });
+    console.log(typeof req.query.q);
+    console.log(req.query.q);
+    var results = trends.search(req.query.q);
+    res.send(results);
 });
 
 app.listen(8080, function() {
