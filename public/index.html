@@ -1,1 +1,25 @@
-Hello world
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Trends Game</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="react/dist/react.js"></script>
+    <script src="react-dom/dist/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+    <script type="text/babel">
+    	var App = React.createClass({
+    		render: function() {
+    			return (
+    				<div>Hello world!</div>
+    			)
+    		}
+    	});
+    	ReactDOM.render(
+    		<App />,
+    		document.getElementById('root')
+    	);
+    </script>
+</html>
