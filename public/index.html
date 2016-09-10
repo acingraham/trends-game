@@ -13,10 +13,55 @@
     	var App = React.createClass({
     		render: function() {
     			return (
-    				<div>Hello world!</div>
+    				<SubmitForm keyword="Keyword" />
+    			);
+    		}
+    	});
+
+    	var SubmitForm = React.createClass({
+    		render: function() {
+    			return(
+    				<form>
+    					<Answer keyword={this.props.keyword} />
+    					<button type="submit">Submit</button>
+    				</form>
     			)
     		}
     	});
+
+    	var AnswerInput = React.createClass({
+    		onFocus: function() {
+    			this.props.swapInput(this.props.prepend);
+    		},
+    		render: function() {
+    			return (
+    				<input type="text" value={this.props.input || ''} onChange={this.props.updateInput} onFocus={this.onFocus} />
+    			);
+    		}
+    	});
+
+    	var Answer = React.createClass({
+    		getInitialState: function() {
+    			return {input: '', prepend: true};
+    		},
+    		updateInput: function(e) {
+    			console.log('update input');
+    			this.setState({input: e.target.value});
+    		},
+    		swapInput: function(prepend) {
+    			this.setState({prepend: prepend});
+    		},
+    		render: function() {
+    			return (
+    				<div>
+	    				<AnswerInput input={this.state.prepend ? this.state.input : ''} updateInput={this.updateInput} swapInput={this.swapInput} prepend={true} />
+	    				{this.props.keyword}
+	    				<AnswerInput input={this.state.prepend ? '' : this.state.input} updateInput={this.updateInput} swapInput={this.swapInput} prepend={false} />
+	    			</div>
+    			);
+    		}
+    	});
+
     	ReactDOM.render(
     		<App />,
     		document.getElementById('root')
